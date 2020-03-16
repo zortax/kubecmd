@@ -1,4 +1,6 @@
-### kubecmd
+## kubecmd   
+
+![CI with Gradle](https://github.com/zortax/kubecmd/workflows/CI/badge.svg)
 
 `Kubecmd` is a simple tool that allows you to send commands (or arbitrary strings) 
 to the input stream of the entry point process of a running kubernetes pod. This is
