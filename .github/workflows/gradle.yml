@@ -24,3 +24,9 @@ jobs:
       run: chmod +x gradlew
     - name: Build with Gradle
       run: ./gradlew build :jar
+    - name: Upload to Release Action
+      uses: Shopify/upload-to-release@1.0.0
+      with:
+          name: kubecmd
+          path: build/libs/kubecmd-1.0.jar
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
