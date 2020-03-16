@@ -30,7 +30,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: ${{ github.sha }}
+        tag_name: ${{ github.ref }}
         release_name: kubecmd  v1.0 (git-${{ github.sha }})
         draft: false
         prerelease: false
