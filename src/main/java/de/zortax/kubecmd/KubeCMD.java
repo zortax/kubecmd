@@ -6,8 +6,10 @@ import io.kubernetes.client.Attach;
 import io.kubernetes.client.Configuration;
 import io.kubernetes.client.util.Config;
 
+import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 
 public class KubeCMD {
 
@@ -36,14 +38,15 @@ public class KubeCMD {
 
       debug("Opening stream...");
       OutputStream outputStream = result.getStandardInputStream();
-
+      BufferedWriter out = new BufferedWriter(new OutputStreamWriter(outputStream));
       for (String cmd : opts.commands) {
         debug("Sending \"" + cmd + "\" to pod.");
-        outputStream.write(cmd.getBytes());
+        out.write(cmd);
         if (!opts.noCarriage)
-          outputStream.write("\n".getBytes());
-        outputStream.flush();
+          out.newLine();
+        out.flush();
       }
+      out.close();
       System.exit(0);
       // This results in a weird SocketTimeoutException... Idk...
       // result.close();
